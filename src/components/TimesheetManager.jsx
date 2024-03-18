@@ -5,13 +5,14 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import '../style/TimesheetManager.css';
 
-function TimesheetManager() {
+function TimesheetManager({}) {
   const [employeeInfo, setEmployeeInfo] = useState({
     name: '',
     department: '',
     time: '',
     date: ''
-  });
+  });    
+  
 
   const [timesheetEntries, setTimesheetEntries] = useState([]);
   const [editIndex, setEditIndex] = useState(-1);
@@ -58,10 +59,11 @@ function TimesheetManager() {
     setTimesheetEntries(prevEntries => prevEntries.filter((entry, i) => i !== index));
   };
 
+  
   return (
     <Container  className="ts-container" maxWidth="md">
       <Typography variant="h4" align="center" gutterBottom>
-        Timesheet Manager
+        Timesheet Manager,...
       </Typography>
       <form>
 
@@ -154,6 +156,7 @@ function TimesheetManager() {
               </TableCell>
             </TableRow>
           ))}
+
         </TableBody>
       </Table>
 
@@ -163,3 +166,4 @@ function TimesheetManager() {
 }
 
 export default TimesheetManager;
+
