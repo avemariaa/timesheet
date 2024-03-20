@@ -1,14 +1,14 @@
 .ts-container {
-  margin-top: 30px;
-  padding: 70px;
+  padding: 20px; /* Set padding to create space inside the container */
+  margin: 10 auto; /* Center the container horizontally */
   background-color: white;
-  
+
   margin-bottom: 20px;
 
 }
 
 .form {
-  display: flex;
+  display:inline-flexbox;
   flex-direction: column;
   align-items: center;
 }
@@ -17,10 +17,6 @@
 .form select {
   width: 100%;
   margin-bottom: 10px;
-}
-
-.form button {
-  margin-top: 10px;
 }
 
 .entries {
