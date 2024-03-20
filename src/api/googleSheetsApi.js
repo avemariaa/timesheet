@@ -13,7 +13,7 @@ export async function writeToGoogleSheets(name, department, time, date) {
     const sheets = google.sheets({ version: 'v4', auth });
 
     // Define the spreadsheet ID and range
-    const spreadsheetId = 'your-spreadsheet-id';
+    const spreadsheetId = 'https://docs.google.com/spreadsheets/d/1SWdcts5hSmIF02AXlMB5-GeUMkMEo6Rbv5O0oduGw9E/';
     const range = 'Sheet1';
 
     // Define the data to be written to the spreadsheet

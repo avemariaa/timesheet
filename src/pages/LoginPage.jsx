@@ -16,7 +16,7 @@ function LoginPage() {
     // Your authentication logic here
     if (username === 'admin' && password === 'password') {
       // Redirect to the homepage upon successful login
-      navigate('/home');
+      navigate('/timesheet');
     } else {
       setError('Invalid username or password');
     }
