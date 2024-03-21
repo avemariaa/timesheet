@@ -26,7 +26,15 @@ function TimesheetManager({}) {
     }));
   };
 
-  const handleAddEntry = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+     // Check if all required fields are filled out
+     if (!employeeInfo.name || !employeeInfo.department || !employeeInfo.time || !employeeInfo.date || !employeeInfo.schedule) {
+      alert('Please fill out all fields before adding entry');
+      return;
+    }
+
     setTimesheetEntries(prevEntries => [...prevEntries, { ...employeeInfo }]);
     setEmployeeInfo({
       name: '',
@@ -68,7 +76,7 @@ function TimesheetManager({}) {
       <Typography variant="h4" align="center" gutterBottom>
         Timesheet Manager
       </Typography>
-      <form>
+      <form onSubmit={handleSubmit}>
 
         <TextField
           fullWidth
@@ -77,6 +85,7 @@ function TimesheetManager({}) {
           sx={{ marginBottom: '10px' }}
           value={employeeInfo.name}
           onChange={handleChange}
+          required
         />
         <FormControl fullWidth>
           <InputLabel>Department</InputLabel>
@@ -84,6 +93,7 @@ function TimesheetManager({}) {
             sx={{ marginBottom: '10px' }}
             value={employeeInfo.department}
             onChange={handleChange}
+            required
             name="department"
           >
 
@@ -100,6 +110,7 @@ function TimesheetManager({}) {
           sx={{ marginBottom: '10px' }}
           value={employeeInfo.time}
           onChange={handleChange}
+          required
           InputLabelProps={{
             shrink: true,
           }}
@@ -112,6 +123,7 @@ function TimesheetManager({}) {
           sx={{ marginBottom: '15px' }}
           value={employeeInfo.date}
           onChange={handleChange}
+          required
           InputLabelProps={{
             shrink: true,
           }}
@@ -122,6 +134,7 @@ function TimesheetManager({}) {
             sx={{ marginBottom: '10px' }}
             value={employeeInfo.schedule}
             onChange={handleChange}
+            required
             name="schedule"
           >
 
@@ -132,7 +145,7 @@ function TimesheetManager({}) {
         </FormControl>
         
         {editIndex === -1 ? (
-          <Button variant="contained" color="primary" onClick={handleAddEntry}>
+          <Button variant="contained" color="primary" type="submit">
             Add Entry
           </Button>
         ) : (

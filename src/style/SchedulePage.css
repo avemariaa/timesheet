@@ -8,7 +8,7 @@
   
   /* Table */
   .table {
-    width: 70%; /* Adjust width as needed */
+    width: 100%; /* Adjust width as needed */
     border-collapse: collapse;
     text-align: center; /* Center-align table content */
     font-weight: bold;
