@@ -10,7 +10,8 @@ function TimesheetManager({}) {
     name: '',
     department: '',
     time: '',
-    date: ''
+    date: '',
+    schedule: ''
   });    
   
 
@@ -31,7 +32,8 @@ function TimesheetManager({}) {
       name: '',
       department: '',
       time: '',
-      date: ''
+      date: '',
+      schedule: ''
     });
   };
 
@@ -51,7 +53,8 @@ function TimesheetManager({}) {
       name: '',
       department: '',
       time: '',
-      date: ''
+      date: '',
+      schedule: ''
     });
   };
 
@@ -89,9 +92,7 @@ function TimesheetManager({}) {
             {/* Add more departments as needed */}
           </Select>
         </FormControl>
-        <FormControl fullWidth>
-        <InputLabel>Time</InputLabel>
-        <Select
+        <TextField
           fullWidth
           label="Time"
           name="time"
@@ -101,20 +102,8 @@ function TimesheetManager({}) {
           onChange={handleChange}
           InputLabelProps={{
             shrink: true,
-          }}>
-            <MenuItem value="7:00 AM">7:00 AM</MenuItem>
-            <MenuItem value="8:00 AM">8:00 AM</MenuItem>
-            <MenuItem value="9:00 AM">9:00 AM</MenuItem>
-            <MenuItem value="1_Lunch BreakIn">Lunchbreak 12:00PM</MenuItem>
-            <MenuItem value="2_Lunch BreakIn">Lunchbreak 1:00PM</MenuItem>
-            <MenuItem value="3_Lunch Break">Lunchbreak 2:00PM</MenuItem>
-            <MenuItem value="4:00 PM">4:00PM</MenuItem>
-            <MenuItem value="5:00 PM">5:00PM</MenuItem>
-            <MenuItem value="6:00 PM">6:00PM</MenuItem>
-            <MenuItem value="7:00 PM">7:00PM</MenuItem>
-            {/* Add more as needed */}
-          </Select>
-          </FormControl>
+          }}
+        />
         <TextField
           fullWidth
           label="Date"
@@ -127,6 +116,20 @@ function TimesheetManager({}) {
             shrink: true,
           }}
         />
+          <FormControl fullWidth>
+          <InputLabel>Schedule</InputLabel>
+          <Select
+            sx={{ marginBottom: '10px' }}
+            value={employeeInfo.schedule}
+            onChange={handleChange}
+            name="schedule"
+          >
+
+            <MenuItem value="Time In">Time In</MenuItem>
+            <MenuItem value="Lunchbreak">Lunchbreak</MenuItem>
+            <MenuItem value="Time Out">Time Out</MenuItem>
+          </Select>
+        </FormControl>
         
         {editIndex === -1 ? (
           <Button variant="contained" color="primary" onClick={handleAddEntry}>
@@ -151,6 +154,7 @@ function TimesheetManager({}) {
             <TableCell>Department</TableCell>
             <TableCell>Time</TableCell>
             <TableCell>Date</TableCell>
+            <TableCell>Schedule</TableCell>
             <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
@@ -161,6 +165,7 @@ function TimesheetManager({}) {
               <TableCell>{entry.department}</TableCell>
               <TableCell>{entry.time}</TableCell>
               <TableCell>{entry.date}</TableCell>
+              <TableCell>{entry.schedule}</TableCell>
               <TableCell>
                 <Button variant="outlined" color="primary" size="small" style={{ marginTop: '15px' }} startIcon={<EditIcon />} onClick={() => handleEdit(index)}>
                   Edit
