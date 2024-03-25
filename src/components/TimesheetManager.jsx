@@ -5,10 +5,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import '../style/TimesheetManager.css';
 
+
 function TimesheetManager({}) {
   const [employeeInfo, setEmployeeInfo] = useState({
     name: '',
-    department: '',
+    role: '',
     time: '',
     date: '',
     schedule: ''
@@ -30,7 +31,7 @@ function TimesheetManager({}) {
     event.preventDefault();
 
      // Check if all required fields are filled out
-     if (!employeeInfo.name || !employeeInfo.department || !employeeInfo.time || !employeeInfo.date || !employeeInfo.schedule) {
+     if (!employeeInfo.name || !employeeInfo.role || !employeeInfo.time || !employeeInfo.date || !employeeInfo.schedule) {
       alert('Please fill out all fields before adding entry');
       return;
     }
@@ -38,7 +39,7 @@ function TimesheetManager({}) {
     setTimesheetEntries(prevEntries => [...prevEntries, { ...employeeInfo }]);
     setEmployeeInfo({
       name: '',
-      department: '',
+      role: '',
       time: '',
       date: '',
       schedule: ''
@@ -59,7 +60,7 @@ function TimesheetManager({}) {
     setEditIndex(-1);
     setEmployeeInfo({
       name: '',
-      department: '',
+      role: '',
       time: '',
       date: '',
       schedule: ''
@@ -78,28 +79,35 @@ function TimesheetManager({}) {
       </Typography>
       <form onSubmit={handleSubmit}>
 
-        <TextField
-          fullWidth
-          label="Name"
-          name="name"
-          sx={{ marginBottom: '10px' }}
-          value={employeeInfo.name}
-          onChange={handleChange}
-          required
-        />
+
         <FormControl fullWidth>
-          <InputLabel>Department</InputLabel>
+          <InputLabel>name</InputLabel>
           <Select
             sx={{ marginBottom: '10px' }}
-            value={employeeInfo.department}
+            value={employeeInfo.name}
             onChange={handleChange}
             required
-            name="department"
+            name="name"
           >
 
-            <MenuItem value="ITSO 3">ITSO BLDG 3</MenuItem>
-            <MenuItem value="ITSO 5">ITSO BLDG 5</MenuItem>
-            {/* Add more departments as needed */}
+            <MenuItem value="Person 1">Person 1</MenuItem>
+            <MenuItem value="Person 2">Person  2</MenuItem>
+            {/* Add more names as needed */}
+          </Select>
+        </FormControl>
+        <FormControl fullWidth>
+          <InputLabel>Role</InputLabel>
+          <Select
+            sx={{ marginBottom: '10px' }}
+            value={employeeInfo.role}
+            onChange={handleChange}
+            required
+            name="role"
+          >
+
+            <MenuItem value="Student Assistant">Student Assistant</MenuItem>
+            <MenuItem value="Intern">Intern</MenuItem>
+            {/* Add more names as needed */}
           </Select>
         </FormControl>
         <TextField
@@ -140,7 +148,7 @@ function TimesheetManager({}) {
 
             <MenuItem value="Time In">Time In</MenuItem>
             <MenuItem value="Lunchbreak">Lunchbreak</MenuItem>
-            <MenuItem value="Time Out">Time Out</MenuItem>
+            <MenuItem value="Ti1me Out">Time Out</MenuItem>
           </Select>
         </FormControl>
         
@@ -164,7 +172,7 @@ function TimesheetManager({}) {
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
-            <TableCell>Department</TableCell>
+            <TableCell>Role</TableCell>
             <TableCell>Time</TableCell>
             <TableCell>Date</TableCell>
             <TableCell>Schedule</TableCell>
@@ -175,7 +183,7 @@ function TimesheetManager({}) {
           {timesheetEntries.map((entry, index) => (
             <TableRow key={index}>
               <TableCell>{entry.name}</TableCell>
-              <TableCell>{entry.department}</TableCell>
+              <TableCell>{entry.role}</TableCell>
               <TableCell>{entry.time}</TableCell>
               <TableCell>{entry.date}</TableCell>
               <TableCell>{entry.schedule}</TableCell>

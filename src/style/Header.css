@@ -1,8 +1,11 @@
 /* Header Container */
 header {
-    background-color: #4ba8ff; /* Background color of the header */
-    color: #fff; /* Text color */
-    padding: 20px; /* Padding around the header content */
+    background-color: #d6d6d6; /* Background color of the header */
+    color: black; /* Text color */
+    padding: 10px; /* Padding around the header content */
+    text-align: center; /* Center-align text */
+  height: 50px; /* Adjust height as needed */
+  line-height: 30px; /* Vertical centering */
   }
   
   /* Navigation */
@@ -22,7 +25,7 @@ header {
   }
   
   nav ul li a {
-    color: #fff; /* Text color for navigation links */
+    color: black; /* Text color for navigation links */
     text-decoration: none; /* Remove underlines from links */
     transition: color 0.3s ease; /* Smooth transition for color change */
   }
