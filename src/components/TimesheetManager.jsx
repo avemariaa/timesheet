@@ -81,7 +81,7 @@ function TimesheetManager({}) {
 
 
         <FormControl fullWidth>
-          <InputLabel>name</InputLabel>
+          <InputLabel>Name</InputLabel>
           <Select
             sx={{ marginBottom: '10px' }}
             value={employeeInfo.name}

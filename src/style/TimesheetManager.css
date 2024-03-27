@@ -14,7 +14,7 @@
 
 .form input,
 .form select {
-  width: 70%;
+  width: 60%;
   margin-bottom: 10px;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .entries table {
-  width: 100%;
+  width: 60%;
   border-collapse: collapse;
 }
 
