@@ -5,6 +5,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import '../style/TimesheetManager.css';
 
+import { Link } from 'react-router-dom';
+import * as XLSX from 'xlsx';
 
 function TimesheetManager({}) {
   const [employeeInfo, setEmployeeInfo] = useState({
@@ -71,6 +73,28 @@ function TimesheetManager({}) {
     setTimesheetEntries(prevEntries => prevEntries.filter((entry, i) => i !== index));
   };
 
+  //xlsx
+  const exportToExcel = (timesheetEntries) => {
+    // Create a new workbook
+    const wb = XLSX.utils.book_new();
+  
+    // Convert timesheet entries to a worksheet
+    const ws = XLSX.utils.json_to_sheet(timesheetEntries);
+  
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(wb, ws, 'Timesheet');
+  
+    // Generate a data URL representing the Excel file
+    const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    const excelBlob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const excelDataUrl = URL.createObjectURL(excelBlob);
+  
+    // Trigger a download of the Excel file
+    const link = document.createElement('a');
+    link.href = excelDataUrl;
+    link.download = 'timesheet.xlsx';
+    link.click();
+  };
   
   return (
     <Container  className="ts-container" maxWidth="md">
@@ -148,7 +172,7 @@ function TimesheetManager({}) {
 
             <MenuItem value="Time In">Time In</MenuItem>
             <MenuItem value="Lunchbreak">Lunchbreak</MenuItem>
-            <MenuItem value="Ti1me Out">Time Out</MenuItem>
+            <MenuItem value="Time Out">Time Out</MenuItem>
           </Select>
         </FormControl>
         
@@ -194,10 +218,11 @@ function TimesheetManager({}) {
                 <Button className="form-button" variant="outlined" color="error" size="small" style={{ marginTop: '15px' }} startIcon={<DeleteIcon />} onClick={() => handleDelete(index)}>
                   Delete
                 </Button>
+
               </TableCell>
             </TableRow>
           ))}
-
+        <Button onClick={() => exportToExcel(timesheetEntries)}>Export to Excel</Button>
         </TableBody>
       </Table>
 
